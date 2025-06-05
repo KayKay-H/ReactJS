@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CPAN144 Assignment 1 - Version 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    nav a {
+      margin-right: 20px;
+      color: darkgreen;
+      cursor: pointer;
+    }
+    section {
+      display: none;
+      margin-top: 30px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CPAN144 Assignment 1 - Alternate Version</h1>
+
+  <nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="loadScript('features.js', 'features')">Profile Page</a>
+    <a onclick="loadScript('conditional.js', 'conditional')">Status Toggle</a>
+  </nav>
+
+  <section id="home" style="display: block;">
+    <h2>Home Page</h2>
+    <p>This is my submission showing different structure and interactivity.</p>
+  </section>
+
+  <section id="features"></section>
+  <section id="conditional"></section>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll("section").forEach(s => s.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    function loadScript(script, target) {
+      showPage(target);
+      const section = document.getElementById(target);
+      if (!section.dataset.loaded) {
+        const s = document.createElement('script');
+        s.src = script;
+        s.onload = () => section.dataset.loaded = "true";
+        document.body.appendChild(s);
+      }
+    }
+  </script>
+
+</body>
+</html>
